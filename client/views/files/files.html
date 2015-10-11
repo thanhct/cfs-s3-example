@@ -1,0 +1,35 @@
+<template name="files">
+  {{> upDown}}
+
+  <h1>Files upload to s3</h1>
+  <div class="well">
+    <input type="file" multiple class="any">
+
+  </div>
+    <div id="dropzone" class="dropzone">
+        <div style="text-align: center; color: gray; border:1px solid red;">Drop file to upload</div>
+        <div style="text-align: center; color: gray; border:1px solid red;">Drop file to upload</div>
+        <div style="text-align: center; color: gray; border:1px solid red;">Drop file to upload</div>
+    </div>
+
+  <div class="fileArea">
+  {{#each uploadedFiles}}
+    {{> uploadedFile}}
+  {{/each}}
+  </div>
+</template>
+
+<template name="uploadedFile">
+    {{#with this.S3Url "s3thumb"}}
+        <img src="{{this}}" alt="" class="thumbnail" />
+    {{/with}}
+  <h4>{{#with this.url store='s3origin'}}<a href="{{this store='s3origin'}}" target="_blank">{{../name}}</a>{{else}}{{this.name}}{{/with}} ({{this.size}} bytes)</h4>
+  {{#if this.isUploaded}}
+  {{#with this.url download=true}}
+  <a href="{{this store='s3origin'}}" class="btn btn-default btn-xs" role="button">Download</a>
+  {{/with}}
+  {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+  {{else}}
+  <p>{{> FS.UploadProgressBar semantic=true}} Uploading...</p>
+  {{/if}}
+</template>
