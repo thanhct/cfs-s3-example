@@ -16,11 +16,6 @@ Stores.s3origin = new FS.Store.S3("s3origin", {
   secretAccessKey: "you_secret", //required
   bucket: "namsoft-photo-blog" //required,
 });
-//
-//Stores.s3thumb = new FS.Store.S3("s3thumb", {
-//  accessKeyId: "AKIAJEA7INIUOCBBQLGA", //required
-//  secretAccessKey: "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", //required
-//  bucket: "namsoft-photo-blog" //required
 //});
 // var anyStore = new FS.Store.S3("any", {
 //   accessKeyId: Meteor.settings.accessKeyId, //required
